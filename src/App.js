@@ -178,7 +178,7 @@ export default function App() {
   // Model selection state
   const [selectedModel, setSelectedModel] = useState("all"); 
   
-  const API_BASE = "http://localhost:8000";
+  const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:8000";
 
   const heroRef = useRef(null);
   const analyzeRef = useRef(null);
@@ -228,14 +228,17 @@ export default function App() {
       ).sort((a,b)=>b[1]-a[1])[0][0]
     : null;
 
+  // UPDATED: Adjust 1-5 logic to 0-4
   const sentColor = (s) =>
-    ["5","4","positive"].includes(String(s)) ? C.green :
-    ["1","2","negative"].includes(String(s)) ? C.red   : C.amber;
+    ["4","3","positive"].includes(String(s)) ? C.green :
+    ["0","1","negative"].includes(String(s)) ? C.red   : C.amber;
+
+  // UPDATED: Adjust 1-5 logic to 0-4
   const sentLabel = (s) =>
-    ["5","positive"].includes(String(s)) ? "Highly Positive" :
-    ["4"].includes(String(s)) ? "Positive" :
-    ["3","neutral"].includes(String(s)) ? "Neutral" :
-    ["2"].includes(String(s)) ? "Negative" : "Highly Negative";
+    ["4","positive"].includes(String(s)) ? "Highly Positive" :
+    ["3"].includes(String(s)) ? "Positive" :
+    ["2","neutral"].includes(String(s)) ? "Neutral" :
+    ["1"].includes(String(s)) ? "Negative" : "Highly Negative";
 
   const buttonLabel = 
     loading ? "Analyzing…" : 
@@ -356,7 +359,8 @@ export default function App() {
             <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", background:C.card, border:`1px solid ${sentColor(majority)}40`, borderRadius:"12px 12px 0 0", padding:"20px 24px", borderBottom:`1px solid ${C.border}` }}>
               <div style={{ display:"flex", alignItems:"center", gap:16 }}>
                 <div style={{ width:46, height:46, borderRadius:10, background:`${sentColor(majority)}15`, border:`1px solid ${sentColor(majority)}35`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, color:sentColor(majority) }}>
-                  {["5","positive"].includes(String(majority)) ? "↑" : ["1","2","negative"].includes(String(majority)) ? "↓" : "→"}
+                  {/* UPDATED: Adjust 1-5 logic to 0-4 */}
+                  {["4","positive"].includes(String(majority)) ? "↑" : ["0","1","negative"].includes(String(majority)) ? "↓" : "→"}
                 </div>
                 <div>
                   <div style={{ fontFamily:"'Syne',sans-serif", fontSize:20, fontWeight:700, color:sentColor(majority) }}>{sentLabel(majority)}</div>
@@ -572,15 +576,16 @@ export default function App() {
             </div>
             <div>
               <div className="mono" style={{ fontSize:10, color:C.green, letterSpacing:".18em", textTransform:"uppercase", marginBottom:14 }}>200 OK — Response</div>
+              {/* UPDATED: Adjust 1-5 logic to 0-4 in mock JSON */}
               <pre style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:10, padding:"20px 22px", fontFamily:"'JetBrains Mono',monospace", fontSize:13, color:C.cream, lineHeight:1.75, overflow:"auto" }}>{`{
   "clean_text": "truffle risotto
                  absolutely divine…",
   "model_used": "all",
   "results": {
     "XGBoost": {
-      "prediction": "5",
+      "prediction": "4",
       "confidence": 0.8821,
-      "probabilities": { "1":0.02,… }
+      "probabilities": { "0":0.02,… }
     },
     "Logistic Regression": {…},
     "Linear SVM": {…}
