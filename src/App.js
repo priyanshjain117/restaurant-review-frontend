@@ -75,8 +75,8 @@ const BAR_ERR_DATA = ERR_METRICS.map(k => ({
 }));
 
 const SAMPLES = [
-  { label:"Positive ★★★★★", text:"The lamb tagine was extraordinary — layers of spice, tender meat, and a perfectly balanced sauce. Staff remembered our anniversary without being asked. This place has earned a permanent spot in our rotation." },
-  { label:"Negative ★☆☆☆☆", text:"Waited 50 minutes for cold, undercooked pasta. The waiter was dismissive when I raised the issue, and the manager never came. Three items on the menu were unavailable. Complete waste of money." },
+  { label:"Positive ★★★★☆", text:"The lamb tagine was extraordinary — layers of spice, tender meat, and a perfectly balanced sauce. Staff remembered our anniversary without being asked. This place has earned a permanent spot in our rotation." },
+  { label:"Negative ★★☆☆☆", text:"Waited 50 minutes for cold, undercooked pasta. The waiter was dismissive when I raised the issue, and the manager never came. Three items on the menu were unavailable. Complete waste of money." },
   { label:"Neutral ★★★☆☆",  text:"Food was fine — nothing special, nothing terrible. The burger was cooked correctly and the fries were decent. Service was a bit slow but not rude. Pricing seems about right for the area." },
 ];
 
