@@ -214,7 +214,7 @@ export default function App() {
       const data = await res.json();
       setResult(data);
     } catch (e) {
-      setError(`Could not reach the API at API_BASE. Make sure FastAPI is running.\n${e.message}`);
+      setError(`Could not reach the API . Make sure FastAPI is running.\n${e.message}`);
     } finally {
       setLoading(false);
     }
@@ -344,7 +344,7 @@ export default function App() {
 
         <div style={{ marginTop:12, padding:"10px 16px", background:"rgba(45,212,191,.05)", border:`1px solid rgba(45,212,191,.15)`, borderRadius:7, display:"flex", gap:10 }}>
           <span className="mono" style={{ fontSize:10, color:C.tealDim, flexShrink:0 }}>API →</span>
-          <span className="mono" style={{ fontSize:10, color:C.muted }}>Hitting <span style={{color:C.teal}}>POST API_BASE/api/predict</span> — start FastAPI with <span style={{color:C.cream}}>uvicorn main:app --reload</span></span>
+          <span className="mono" style={{ fontSize:10, color:C.muted }}>Hitting <span style={{color:C.teal}}>POST ./api/predict</span> — start FastAPI with <span style={{color:C.cream}}>uvicorn main:app --reload</span></span>
         </div>
 
         {error && (
